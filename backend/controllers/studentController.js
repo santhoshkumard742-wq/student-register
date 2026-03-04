@@ -3,7 +3,10 @@ const Student = require("../models/studentModel");
 // Register Student
 exports.registerStudent = async (req, res) => {
   try {
-    const student = new Student(req.body);
+    const student = new Student({
+      ...req.body,
+      image: req.file ? req.file.filename : null
+    });
     await student.save();
     res.json({ message: "Student Registered Successfully" });
   } catch (error) {
