@@ -3,9 +3,10 @@ const Student = require("../models/studentModel");
 // Register Student
 exports.registerStudent = async (req, res) => {
   try {
+    // make sure the uploaded file is stored in the profilePhoto field
     const student = new Student({
       ...req.body,
-      image: req.file ? req.file.filename : null
+      profilePhoto: req.file ? req.file.filename : null
     });
     await student.save();
     res.json({ message: "Student Registered Successfully" });

@@ -11,7 +11,11 @@ app.use(express.json());
 
 connectDB();
 
+// serve frontend assets
 app.use(express.static(path.join(__dirname, "public")));
+
+// make uploaded images accessible
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use("/api", studentRoutes);
 
